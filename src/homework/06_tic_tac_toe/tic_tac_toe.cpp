@@ -52,17 +52,14 @@ void TicTacToe::display_board() const
 
 bool TicTacToe::check_board_full()
 {
-    bool is_board_full = false; 
+    bool is_board_full = true; 
     for(unsigned int i = 0; i < 9; i++)
     {
         if(pegs[i] == " ")
         {
             is_board_full = false;
         }
-        else
-        {
-            is_board_full = true;
-        }
+      
     }
     return is_board_full;
 }
@@ -217,3 +214,4 @@ bool TicTacToe::game_over()
     return is_game_over;
     
 }
+

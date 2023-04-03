@@ -25,7 +25,7 @@ int main()
         if(game.game_over() == true)
         {
             cout<<"The winner is: "<<game.get_winner()<<"\n";
-            cout<<"Game Over. Want to play again?";
+            cout<<"Game Over. Want to play again? (y or n)";
             cin>>user_choice;
         }
 
@@ -33,3 +33,5 @@ int main()
     
     return 0;
 }
+
+
