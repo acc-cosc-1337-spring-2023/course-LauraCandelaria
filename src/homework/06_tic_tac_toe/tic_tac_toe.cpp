@@ -1,5 +1,6 @@
 //cpp
 
+
 #include"tic_tac_toe.h"
 using std::cout;
 using std::cin;
@@ -42,13 +43,14 @@ void TicTacToe::set_next_player()
     }
 }
 
+/*
 void TicTacToe::display_board() const
 {
     std::cout<<pegs[0]<<" | "<<pegs[1]<<" | "<<pegs[2]<<"\n";
     std::cout<<pegs[3]<<" | "<<pegs[4]<<" | "<<pegs[5]<<"\n";
     std::cout<<pegs[6]<<" | "<<pegs[7]<<" | "<<pegs[8]<<"\n";
 }
-
+*/
 
 bool TicTacToe::check_board_full()
 {
@@ -215,3 +217,21 @@ bool TicTacToe::game_over()
     
 }
 
+
+std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
+{
+    std::cout<<game.pegs[0]<<" | "<<game.pegs[1]<<" | "<<game.pegs[2]<<"\n";
+    std::cout<<game.pegs[3]<<" | "<<game.pegs[4]<<" | "<<game.pegs[5]<<"\n";
+    std::cout<<game.pegs[6]<<" | "<<game.pegs[7]<<" | "<<game.pegs[8]<<"\n";
+
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, TicTacToe& game)
+{
+    int position = 1;
+    in >> position;
+    game.mark_board(position);
+    cout<<game;
+    return in;
+}
