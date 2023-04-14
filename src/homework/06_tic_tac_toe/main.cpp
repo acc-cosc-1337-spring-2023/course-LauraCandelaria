@@ -12,11 +12,12 @@ int main()
     int x_win = 0;
     int o_win = 0;
     int ties = 0;
+    TicTacToeManager manager;
     
     do
     {
     
-        TicTacToeManager manager;
+        
         TicTacToe game;
         string first_player = "X";
         cout<<"\nEnter an X or O: ";
@@ -38,7 +39,7 @@ int main()
             manager.get_winner_total(o_win, x_win, ties);
 
             cout<<"The winner is: "<<game.get_winner()<<"\n\n";
-            cout<<"****************************";
+            cout<<"****************************\n";
             cout<<"Total wins - \nPlayer X: "<<x_win<<"\n";
             cout<<"Player O: "<<o_win<<"\n"<<"Ties: "<<ties<<"\n\n";
             cout<<"****************************\n\n";
