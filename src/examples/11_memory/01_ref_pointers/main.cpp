@@ -15,7 +15,7 @@ int main()
 	*/
 // pointers
 
-	auto num = 5, num1 = 10;
+	auto num = 5; 
 	int *num_ptr = &num; // point to memory of num
 
 	cout<<"The value of num is: "<<num<<"\n";
