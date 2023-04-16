@@ -1,6 +1,12 @@
 #include<iostream>
 #include"tic_tac_toe.h"
 #include"tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+#include<memory>
+
+using std::unique_ptr; 
+using std::make_unique;
 
 using std::cout;
 using std::cin;
@@ -14,42 +20,55 @@ int main()
     int ties = 0;
     TicTacToeManager manager;
     
-    do
-    {
-    
-        
-        TicTacToe game;
-        string first_player = "X";
-        cout<<"\nEnter an X or O: ";
-        cin>>first_player;
-        game.start_game(first_player);
-        cout<<game;
-        
         do
-        {
-            cout<<"\nEnter which position (1-9) you would like to mark: ";
-            cin >> game;
-             
-            
-        } while (game.game_over() == false);
-        if(game.game_over() == true)
-        {
+        { 
+		unique_ptr<TicTacToe> game;
+		string game_size;
 
-            manager.save_game(game);
-            manager.get_winner_total(o_win, x_win, ties);
+		    do 
+            {
+			cout<< "Would you like to play 3x3 or 4x4? (enter 3 or 4)\n";
+			cin>>game_size;
 
-            cout<<"The winner is: "<<game.get_winner()<<"\n\n";
-            cout<<"****************************\n";
-            cout<<"Total wins - \nPlayer X: "<<x_win<<"\n";
-            cout<<"Player O: "<<o_win<<"\n"<<"Ties: "<<ties<<"\n\n";
-            cout<<"****************************\n\n";
-            cout<<"Game Over. Want to play again? (y or n)";
-            cin>>user_choice;
-        }
+			if(game_size == "3") {
+				game = make_unique<TicTacToe3>();
 
-    } while (user_choice == 'y' || user_choice == 'Y');
+			} else if (game_size == "4") {
+				game = make_unique<TicTacToe4>();
+			}
+		    } while(!(game_size == "3" || game_size == "4"));
+
+
+            string first_player = "X";
+            cout<<"\nEnter an X or O: ";
+            cin>>first_player;
+            game->start_game(first_player);
+            cout<<*game;
+        
+            do
+            {
+                cout<<"\nEnter which position (1-9) you would like to mark: ";
+                cin >> *game;
+                cout << *game;
+            } while (game->game_over() == false);
+
+            if(game->game_over() == true)
+            {
+                manager.save_game(game);
+                manager.get_winner_total(o_win, x_win, ties);
+
+                cout<<"The winner is: "<<game->get_winner()<<"\n\n";
+                cout<<"****************************\n";
+                cout<<"Total wins - \nPlayer X: "<<x_win<<"\n";
+                cout<<"Player O: "<<o_win<<"\n"<<"Ties: "<<ties<<"\n\n";
+                cout<<"****************************\n\n";
+                cout<<"Game Over. Want to play again? (y or n)";
+                cin>>user_choice;
+            }
+
+        } while (user_choice == 'y' || user_choice == 'Y');
     
-    return 0;
-}
+        return 0;
 
+}
 

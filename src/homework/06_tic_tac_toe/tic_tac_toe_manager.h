@@ -1,5 +1,4 @@
 //h
-
 #ifndef TICTACTOE_MANAGER_H
 #define TICTACTOE_MANAGER_H
 
@@ -8,19 +7,22 @@
 #include<vector>
 #include<string>
 
-
+#include<memory>
+using std::unique_ptr; 
+using std::make_unique;
 
 class TicTacToeManager
 {
+    friend std::ostream& operator<<(std::ostream & out, const TicTacToeManager & manager);
+    
     public:
-    void save_game(TicTacToe game);
+    // void save_game(TicTacToe game);
+    void save_game(unique_ptr<TicTacToe>& b);
     void get_winner_total(int& o, int& w, int& t);
     
-    friend std::ostream& operator<<(std::ostream & out, const TicTacToeManager & manager);
-
     private:
-    
-    vector<TicTacToe> games ;
+    // vector<TicTacToe> games ;
+    vector<unique_ptr<TicTacToe>> games;
     int x_win{0};
     int o_win{0};
     int ties{0};

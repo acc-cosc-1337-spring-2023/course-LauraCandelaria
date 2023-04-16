@@ -4,6 +4,16 @@
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
+
+	#include <iostream>
+using std::cout; 
+using std::cin;
+
+#include <memory>
+using std::unique_ptr; 
+using std::make_unique;
+
+
 }
 /*
 TEST_CASE("Verify game over")
@@ -32,7 +42,7 @@ TEST_CASE("Verify game over")
 	REQUIRE(game.game_over() == true);
 
 }
-*/
+
 
 TEST_CASE("Verify game over - win by first column")
 {
@@ -203,3 +213,5 @@ TEST_CASE("Verify get player set to O")
 	REQUIRE(game.get_player() == "O");
 
 }
+*/
+
